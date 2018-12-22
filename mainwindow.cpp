@@ -84,7 +84,12 @@ void MainWindow::search() {
     QDirIterator it(directory, QDir::Files | QDir::NoDotAndDotDot | QDir::NoSymLinks, QDirIterator::Subdirectories);
     QVector<QString> files;
     while (it.hasNext()) {
-        files.push_back(it.next());
+        auto file = it.next();
+        if (it.fileInfo().isSymLink()) {
+            continue;
+        }
+
+        files.push_back(file);
         filesNumber++;
         if (cancelRequested()) {
             return;
