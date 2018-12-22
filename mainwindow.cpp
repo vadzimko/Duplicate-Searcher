@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->tree->setUniformRowHeights(true);
     setWindowTitle(QString("Duplicate Searcher"));
+
+    qRegisterMetaType<QVector<int> >("QVector<int>");
 }
 
 MainWindow::~MainWindow()
